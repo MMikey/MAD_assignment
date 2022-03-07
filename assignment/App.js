@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import HomeScreen from './components/home';
-import AboutScreen from './components/about';
+import HomeScreen from './components/screens/home';
+import AboutScreen from './components/screens/about';
 
 const Drawer = createDrawerNavigator();
 
