@@ -1,32 +1,24 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-class SayHello extends Component {
+import HomeScreen from './components/home';
+import AboutScreen from './components/about';
+
+const Drawer = createDrawerNavigator();
+
+class App extends Component {
   render(){
     return (
-      <View>
-        <Text>Hello {this.props.name} </Text>
-      </View>
-    )
-  };
+      <NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen name="Home" component={HomeScreen} />
+          <Drawer.Screen name="About" component={AboutScreen} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    );
+  }
+  
 }
 
-class HelloWorldApp extends Component {
-  render(){ 
-    let name = 'Mikey'
-
-    return (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center"
-          }}>
-          <SayHello name="Mike"/>
-        </View>
-      )
-    };
-}
-
-
-export default HelloWorldApp;
+export default App;
