@@ -4,6 +4,10 @@ import { styles } from './../../styles/stylesheet_main';
 
 
 class AboutScreen extends Component {
+    static navigationOptions = {
+        header: null
+    }
+    
     render() {
         return(
             <View style = {styles.container}>

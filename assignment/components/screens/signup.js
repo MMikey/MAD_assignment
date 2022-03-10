@@ -8,39 +8,16 @@ class LoginScreen extends Component {
         super(props);
 
         this.state = {
+            first_name: "",
+            last_name: "",
             email: "",
             password: "",
         }
     }
 
-    login = async () => {
+    signUp = async () => {
         
         //Validation here..
-
-        return fetch('http://localhost:3333/api/1.0.0/login', {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(this.state)
-        })
-        .then((response) => {
-            if(response.status === 200){
-                return response.json()
-            }else if(response.status === 400){
-                throw 'Invalid email or password..';
-            }else{
-                throw 'Oops! Something when wrong...'
-            }
-        })
-        .then(async (responseJson) => {
-            console.log(responseJson);
-            await AsyncStorage.setItem('@session_token', responseJson.token)
-            this.props.navigation.navigate("Home");
-        })
-        .catch((error) => {
-            console.log(error);
-        })
     }
 
     render() {
@@ -48,6 +25,25 @@ class LoginScreen extends Component {
             <View style ={styles.container}>
                 <Text style={styles.heading}> Login </Text>
 
+                <View style={formStyles.formItem}>
+                    <Text style={formStyles.formLabel}>First Name</Text>
+                    <TextInput
+                        placeholder="enter first name.."
+                        style={formStyles.formInput}
+                        onChangeText={(email) => this.setState({first_name})}
+                        value={this.state.first_name}
+                    />
+                </View>
+
+                <View style={formStyles.formItem}>
+                    <Text style={formStyles.formLabel}>Last Name</Text>    
+                    <TextInput
+                        placeholder="enter first name.."
+                        style={formStyles.formInput}
+                        onChangeText={(email) => this.setState({first_name})}
+                        value={this.state.first_name}
+                    />
+                </View>
                 <View style={formStyles.formItem}>
                     <Text style={formStyles.formLabel}>Email:</Text>
                     <TextInput
@@ -69,8 +65,8 @@ class LoginScreen extends Component {
                 </View>
 
                 <Button
-                    title="Login"
-                    onPress={() => this.login()}
+                    title="Sign-Up!"
+                    onPress={() => this.signUp()}
                 />
 
             </View>

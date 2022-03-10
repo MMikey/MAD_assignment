@@ -8,7 +8,26 @@ const styles = StyleSheet.create({
     heading: {
         flex:1,
         color:'blue',
-    }
+    },
+
 });
 
-export {styles};
+const formStyles = StyleSheet.create({
+    formItem: {
+        flex:1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignContent: 'space-between',
+    },
+    
+    formLabel: {
+        alignItems: 'center',
+        alignContent: 'space-between'
+    },
+
+    formInput: {
+        alignItems: 'center',
+        alignContent: 'space-between'
+    }
+})
+export {styles, formStyles};
