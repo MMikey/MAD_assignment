@@ -17,7 +17,32 @@ class LoginScreen extends Component {
 
     signUp = async () => {
         
-        //Validation here..
+        //ADD VALIDATION
+
+        return fetch('http://localhost:3333/api/1.0.0/user', {
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        })
+        .then((response) => {
+            if(response.status === 200){
+                return response.json();
+            }else if(response.status === 400){
+                throw 'Invalid email or password..';
+            }else{
+                throw 'Oops! Something went wrong..'
+            }
+        })
+        .then(async (responseJson) => {
+            console.log(responseJson);
+            await AsyncStorage.setItem('@session_token', responseJson.token)
+            this.props.navigation.navigate("Home");
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }
 
     render() {
@@ -58,6 +83,16 @@ class LoginScreen extends Component {
                     <Text styles={formStyles.formLabel}>Password:</Text>
                     <TextInput
                         placeholder="enter password..."
+                        style={formStyles.formInput}
+                        onChangeText={(password) => this.setState({password})}
+                        value={this.state.password}
+                        secureTextEntry/>
+                </View>
+
+                <View style={formStyles.formItem}>
+                    <Text styles={formStyles.formLabel}>Confirm Password:</Text>
+                    <TextInput
+                        placeholder="enter password again..."
                         style={formStyles.formInput}
                         onChangeText={(password) => this.setState({password})}
                         value={this.state.password}
