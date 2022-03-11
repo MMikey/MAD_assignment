@@ -30,7 +30,7 @@ class ProfileScreen extends Component {
         this.unsubscribe();
     }
 
-    getProfileData = async () => {r
+    getProfileData = async () => {
         // Get session token from asyncstorage - similar how you get session values in php
         const value = await AsyncStorage.getItem('@session_token');
         const id = await AsyncStorage.getItem('@session_id');
@@ -93,7 +93,7 @@ class ProfileScreen extends Component {
                       )}
                       keyExtractor={(item,index) => item.user_id.toString()}
                     />
-                    <Logout></Logout>
+                    <Logout navigation={this.props.navigation}/>
               </View>
             );
         }

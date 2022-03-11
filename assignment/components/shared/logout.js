@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Text, ScrollView, Button } from 'react-native';
+import { View, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class Logout extends Component{
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -54,13 +54,12 @@ class Logout extends Component{
         })
     }
 
-    render(){
+    render() {
         return (
             <View>
-
-            <Button
-                title="Logout"
-                onPress={() => this.logoutUser()}
+                <Button
+                    title="Logout"
+                    onPress={() => this.logoutUser()}
                 />
             </View>
         )
