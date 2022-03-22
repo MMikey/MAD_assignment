@@ -88,7 +88,7 @@ class ProfileScreen extends Component {
                       data={this.state.profileListData}
                       renderItem={({item}) => (
                           <View>
-                            <Text>{item.user_givenname} {item.user_familyname}</Text>
+                            <Text>{item.first_name} {item.last_name}</Text>
                           </View>
                       )}
                       keyExtractor={(item,index) => item.user_id.toString()}

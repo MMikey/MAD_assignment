@@ -3,7 +3,7 @@ import { Text, View, Button, TextInput } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { styles, formStyles } from './../../styles/stylesheet_main';
 
-class LoginScreen extends Component {
+class SignupScreen extends Component {
     constructor(props) {
         super(props);
 
@@ -27,12 +27,12 @@ class LoginScreen extends Component {
             body: JSON.stringify(this.state)
         })
         .then((response) => {
-            if(response.status === 200){
+            if(response.status === 201){
                 return response.json();
             }else if(response.status === 400){
-                throw 'Invalid email or password..';
+                throw 'User Already Exists...';
             }else{
-                throw 'Oops! Something went wrong..'
+                throw 'Oops! Somethi    ng went wrong..'
             }
         })
         .then(async (responseJson) => {
@@ -55,7 +55,7 @@ class LoginScreen extends Component {
                     <TextInput
                         placeholder="enter first name.."
                         style={formStyles.formInput}
-                        onChangeText={(email) => this.setState({first_name})}
+                        onChangeText={(first_name) => this.setState({first_name})}
                         value={this.state.first_name}
                     />
                 </View>
@@ -63,10 +63,10 @@ class LoginScreen extends Component {
                 <View style={formStyles.formItem}>
                     <Text style={formStyles.formLabel}>Last Name</Text>    
                     <TextInput
-                        placeholder="enter first name.."
+                        placeholder="enter last name.."
                         style={formStyles.formInput}
-                        onChangeText={(email) => this.setState({first_name})}
-                        value={this.state.first_name}
+                        onChangeText={(last_name) => this.setState({last_name})}
+                        value={this.state.last_name}
                     />
                 </View>
                 <View style={formStyles.formItem}>
@@ -109,4 +109,4 @@ class LoginScreen extends Component {
     }
 }
 
-export default LoginScreen;
+export default SignupScreen;
