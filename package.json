@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "standard": "^16.0.4"
+  },
+  "standard": {
+    "plugins": ["html"],
+    "parser": "@babel/eslint-parser"
+   }
+}
+
+ 
