@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { FlatList, Text, View, Button } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import { styles } from './../../styles/stylesheet_main'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Logout from '../shared/logout'

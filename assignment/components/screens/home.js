@@ -24,6 +24,7 @@ class HomeScreen extends Component {
             onPress={() => this.props.navigation.navigate('Login')}
           />
 
+          <Logout navigation={this.props.navigation} />
         </View>
       )
     }
