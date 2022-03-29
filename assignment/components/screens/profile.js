@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
+import AddFriend from '../shared/addFriend'
+
 class ProfileScreen extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
       isLoading: true,
+      userID: 0,
       profileListData: []
     }
   }
@@ -37,6 +40,7 @@ class ProfileScreen extends Component {
     }
 
     const id = tempID
+    this.setState({ userID: id })
 
     return window.fetch('http://localhost:3333/api/1.0.0/user/' + id, {
       headers: {
@@ -82,6 +86,7 @@ class ProfileScreen extends Component {
       return (
         <View>
           <Text>{this.state.profileListData.first_name} {this.state.profileListData.last_name}</Text>
+          <AddFriend userID={this.state.userID} navigation={this.props.navigation} />
         </View>
       )
     }
