@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { FlatList, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import Logout from '../shared/logout'
 
 class ProfileScreen extends Component {
   constructor (props) {
@@ -28,9 +27,17 @@ class ProfileScreen extends Component {
   }
 
   getProfileData = async () => {
-    // Get session token from asyncstorage - similar how you get session values in php
+    // Get session token from< asyncstorage - similar how you get session values in php
     const value = await AsyncStorage.getItem('@session_token')
-    const id = await AsyncStorage.getItem('@session_id')
+
+    // Check where a parameter has been passed indicated you're viewing a different profile
+    let tempID = await AsyncStorage.getItem('@session_id')
+    if (this.props.route.params) {
+      tempID = this.props.route.params.param_id
+    }
+
+    const id = tempID
+
     return window.fetch('http://localhost:3333/api/1.0.0/user/' + id, {
       headers: {
         'X-Authorization': value
@@ -67,30 +74,14 @@ class ProfileScreen extends Component {
   render () {
     if (this.state.isLoading) {
       return (
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-        >
+        <View>
           <Text>Loading..</Text>
         </View>
       )
     } else {
       return (
         <View>
-          <FlatList
-            data={this.state.profileListData}
-            renderItem={({ item }) => (
-              <View>
-                <Text>{item.first_name} {item.last_name}</Text>
-              </View>
-            )}
-            keyExtractor={(item, index) => item.user_id.toString()}
-          />
-          <Logout navigation={this.props.navigation} />
+          <Text>{this.state.profileListData.first_name} {this.state.profileListData.last_name}</Text>
         </View>
       )
     }

@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View, Button, TextInput } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { styles, formStyles } from './../../styles/stylesheet_main'
+
+import { mainStyles } from '../../styles/mainStyles'
+import { formStyles } from '../../styles/formStyles'
 
 class LoginScreen extends Component {
   constructor (props) {
@@ -45,8 +47,8 @@ class LoginScreen extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
-        <Text style={styles.heading}> Login </Text>
+      <View style={mainStyles.container}>
+        <Text style={mainStyles.heading}> Login </Text>
 
         <View style={formStyles.formItem}>
           <Text style={formStyles.formLabel}>Email:</Text>

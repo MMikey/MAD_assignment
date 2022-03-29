@@ -9,7 +9,7 @@ import ExploreStackScreen from './navigation/ExploreStackScreen.js'
 const Tab = createBottomTabNavigator()
 
 class App extends Component {
-  render() {
+  render () {
     return (
       // Tab Navigator points to stack navigator in navigation folder
       <NavigationContainer>
