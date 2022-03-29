@@ -33,7 +33,7 @@ class Logout extends Component {
   logoutUser = async () => {
     const token = await AsyncStorage.getItem('@session_token')
     await AsyncStorage.removeItem('@session_token')
-    return fetch('http://localhost:3333/api/1.0.0/logout', {
+    return window.fetch('http://localhost:3333/api/1.0.0/logout', {
       method: 'post',
       headers: {
         'X-Authorization': token
@@ -45,7 +45,7 @@ class Logout extends Component {
         } else if (response.status === 401) {
           this.props.navigation.navigate('Login')
         } else {
-          throw 'Something went wrong'
+          throw new Error('Something went wrong')
         }
       })
       .catch((error) => {

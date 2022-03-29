@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { FlatList, Text, View } from 'react-native'
-import { styles } from './../../styles/stylesheet_main'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Logout from '../shared/logout'
 
@@ -32,7 +31,7 @@ class ProfileScreen extends Component {
     // Get session token from asyncstorage - similar how you get session values in php
     const value = await AsyncStorage.getItem('@session_token')
     const id = await AsyncStorage.getItem('@session_id')
-    return fetch('http://localhost:3333/api/1.0.0/user/' + id, {
+    return window.fetch('http://localhost:3333/api/1.0.0/user/' + id, {
       headers: {
         'X-Authorization': value
       }
@@ -44,7 +43,7 @@ class ProfileScreen extends Component {
           // this is used to navigate back to login
           this.props.navigation.navigate('Login')
         } else {
-          throw 'Oops! Something went wrong'
+          throw new Error('Oops! Something went wrong')
         }
       })
       .then((responseJson) => {

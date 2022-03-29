@@ -18,7 +18,7 @@ class SignupScreen extends Component {
     signUp = async () => {
       // ADD VALIDATION
 
-      return fetch('http://localhost:3333/api/1.0.0/user', {
+      return window.fetch('http://localhost:3333/api/1.0.0/user', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
@@ -29,9 +29,9 @@ class SignupScreen extends Component {
           if (response.status === 201) {
             return response.json()
           } else if (response.status === 400) {
-            throw 'User Already Exists...'
+            throw new Error('User Already Exists...')
           } else {
-            throw 'Oops! Somethi    ng went wrong..'
+            throw new Error('Oops! Something went wrong..')
           }
         })
         .then(async (responseJson) => {

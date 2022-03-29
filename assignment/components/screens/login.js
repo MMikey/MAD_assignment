@@ -16,7 +16,7 @@ class LoginScreen extends Component {
   login = async () => {
     // ADD VALIDATION
 
-    return fetch('http://localhost:3333/api/1.0.0/login', {
+    return window.fetch('http://localhost:3333/api/1.0.0/login', {
       method: 'post',
       headers: {
         'Content-Type': 'application/json'
@@ -27,9 +27,9 @@ class LoginScreen extends Component {
         if (response.status === 200) {
           return response.json()
         } else if (response.status === 400) {
-          throw 'Invalid email or password..'
+          throw new Error('Invalid email or password..')
         } else {
-          throw 'Oops! Something went wrong...'
+          throw new Error('Oops! Something went wrong...')
         }
       })
       .then(async (responseJson) => {
