@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, FlatList } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import AddFriend from '../shared/addFriend'
 
 class ProfileScreen extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
       isLoading: true,
       userID: 0,
-      profileListData: []
+      profileListData: [],
+      friendsData: []
     }
   }
 
   // called immediately after page is loaded.
-  componentDidMount () {
+  componentDidMount() {
     // when page comes into focus, check user is still logged in
     this.unsubscribe = this.props.navigation.addListener('focus', () => {
       this.checkLoggedIn()
@@ -25,7 +26,7 @@ class ProfileScreen extends Component {
     this.getProfileData()
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.unsubscribe()
   }
 
@@ -52,7 +53,7 @@ class ProfileScreen extends Component {
           return response.json()
         } else if (response.status === 401) {
           // this is used to navigate back to login
-          this.props.navigation.navigate('Login')
+          this.props.navigation.navigate('Settings', { screen: 'Login' })
         } else {
           throw new Error('Oops! Something went wrong')
         }
@@ -68,14 +69,42 @@ class ProfileScreen extends Component {
       })
   }
 
+  getFriends = async () => {
+    const value = await AsyncStorage.getItem('@session_token')
+
+    return window.fetch('http://localhost:3333/api/1.0.0/user/' + this.state.userID + '/friends', {
+      headers: {
+        'X-Authorization': value
+      }
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          return response.json()
+        } else if (response.status === 403) {
+          throw new Error('Add as friend to view mutuals!')
+        } else {
+          throw new Error('Oops! Something went wrong')
+        }
+      })
+      .then((responseJson) => {
+        this.setState({
+          isLoading: false,
+          friendsData: responseJson
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
+
   checkLoggedIn = async () => {
     const value = await AsyncStorage.getItem('@session_token')
     if (value == null) {
-      this.props.navigation.navigate('Login')
+      this.props.navigation.navigate('Settings', { screen: 'Login' })
     }
   };
 
-  render () {
+  render() {
     if (this.state.isLoading) {
       return (
         <View>
@@ -87,6 +116,17 @@ class ProfileScreen extends Component {
         <View>
           <Text>{this.state.profileListData.first_name} {this.state.profileListData.last_name}</Text>
           <AddFriend userID={this.state.userID} navigation={this.props.navigation} />
+
+          {/* Friends list*/}
+          <FlatList
+            data={this.state.results}
+            renderItem={({ item }) => (
+              <View>
+                <Text>{item.first_name} {item.second_name}</Text>
+              </View>
+            )}
+            keyExtractor={(item, index) => item.user_id.toString()}
+          />
         </View>
       )
     }
