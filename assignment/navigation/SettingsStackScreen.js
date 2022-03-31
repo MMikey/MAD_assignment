@@ -9,7 +9,10 @@ const SettingsStack = createNativeStackNavigator()
 class SettingsStackScreen extends Component {
   render () {
     return (
-      <SettingsStack.Navigator>
+      <SettingsStack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}>
         <SettingsStack.Screen name='Login' component={LoginScreen} />
         <SettingsStack.Screen name='Signup' component={SignupScreen} />
       </SettingsStack.Navigator>

@@ -4,6 +4,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import AddFriend from '../shared/addFriend'
 
+import { mainStyles } from '../../styles/mainStyles'
+import { profileStyles } from '../../styles/profileStyles'
+
 class ProfileScreen extends Component {
   constructor(props) {
     super(props)
@@ -113,8 +116,10 @@ class ProfileScreen extends Component {
       )
     } else {
       return (
-        <View>
-          <Text>{this.state.profileListData.first_name} {this.state.profileListData.last_name}</Text>
+        <View style={mainStyles.container}>
+          <View style={profileStyles.profileDetailsContainer}>
+            <Text style={profileStyles.profileName}>{this.state.profileListData.first_name} {this.state.profileListData.last_name}</Text>
+          </View>
           <AddFriend userID={this.state.userID} navigation={this.props.navigation} />
 
           {/* Friends list*/}

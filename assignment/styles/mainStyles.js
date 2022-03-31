@@ -1,20 +1,40 @@
 import { StyleSheet } from 'react-native'
+import {COLORS} from './common'
 
 const mainStyles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignContent: 'center',
-    backgroundColor: '#B3D7DF'
+    backgroundColor: COLORS.background,
+    flex:1,
+    justifyContent:'center',
+    alignContent:'center'
+  },
+
+  titleContainer: {
+    alignSelf: 'center',
+    borderRadius:4,
+    padding:15
   },
 
   titleText: {
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: 'bold',
-    color: 'blue'
+    color: COLORS.primaryText,
+    textAlign:'center',
+    fontFamily: 'Courier New'
   },
 
-  buttonLink: {
-    color: 'red'
+  buttonContainer: {
+    minWidth: 50,
+    alignSelf: 'center',
+    backgroundColor: COLORS.button,
+    borderRadius:4,
+    marginTop:8,
+    padding:8,
+  },
+
+  button: {
+    color: COLORS.secondaryText,
+    fontSize: 20
   }
 })
 
