@@ -13,7 +13,11 @@ class App extends Component {
     return (
       // Tab Navigator points to stack navigator in navigation folder
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          screenOptions={{
+            headerShown: false
+          }}
+        >
           <Tab.Screen name='Home' component={HomeStackScreen} />
           <Tab.Screen name='Explore' component={ExploreStackScreen} />
           <Tab.Screen name='Settings' component={SettingsStackScreen} />

@@ -10,9 +10,10 @@ class SettingsStackScreen extends Component {
   render () {
     return (
       <SettingsStack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}>
+        screenOptions={{
+          headerShown: false
+        }}
+      >
         <SettingsStack.Screen name='Login' component={LoginScreen} />
         <SettingsStack.Screen name='Signup' component={SignupScreen} />
       </SettingsStack.Navigator>

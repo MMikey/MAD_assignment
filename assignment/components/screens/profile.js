@@ -122,8 +122,8 @@ class ProfileScreen extends Component {
           </View>
           <AddFriend userID={this.state.userID} navigation={this.props.navigation} />
 
-          {/* Friends list*/}
           <FlatList
+            ListEmptyComponent={<Text>EMPTY!</Text>}
             data={this.state.results}
             renderItem={({ item }) => (
               <View>

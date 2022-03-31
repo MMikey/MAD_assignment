@@ -3,6 +3,8 @@ import { FlatList, View, Text, TextInput, Button } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
+import ProfilePreview from '../shared/profilePreview'
+
 class SearchScreen extends Component {
   constructor (props) {
     super(props)
@@ -76,13 +78,9 @@ class SearchScreen extends Component {
         <FlatList
           data={this.state.results}
           renderItem={({ item }) => (
-            <View>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Profile', { param_id: item.user_id })}
-              >
-                <Text>{item.user_givenname} {item.user_familyname}</Text>
-              </TouchableOpacity>
-            </View>
+            <ProfilePreview 
+            navigation={this.props.navigation}
+            profileData={item}/>
           )}
           keyExtractor={(item, index) => item.user_id.toString()}
         />

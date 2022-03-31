@@ -10,9 +10,10 @@ class ExploreStackScreen extends Component {
   render () {
     return (
       <ExploreStack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}>
+        screenOptions={{
+          headerShown: false
+        }}
+      >
         <ExploreStack.Screen name='Search' component={SearchScreen} />
         <ExploreStack.Screen name='Profile' component={ProfileScreen} />
       </ExploreStack.Navigator>
