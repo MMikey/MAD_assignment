@@ -10,7 +10,7 @@ import { mainStyles } from '../../styles/mainStyles'
 import { profileStyles } from '../../styles/profileStyles'
 
 class ProfileScreen extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -34,7 +34,7 @@ class ProfileScreen extends Component {
   }
 
   // called immediately after page is loaded.
-  componentDidMount() {
+  componentDidMount () {
     // when page comes into focus, check user is still logged in
     this.unsubscribe = this.props.navigation.addListener('focus', () => {
       this.checkLoggedIn()
@@ -46,7 +46,7 @@ class ProfileScreen extends Component {
     this.getFriends()
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.unsubscribe()
   }
 
@@ -142,7 +142,7 @@ class ProfileScreen extends Component {
     }
   }
 
-  render() {
+  render () {
     if (this.state.isLoading) {
       return (
         <View>
@@ -156,7 +156,7 @@ class ProfileScreen extends Component {
             <ProfilePicture userID={this.state.userID} />
             <Text style={profileStyles.profileName}>{this.state.profileListData.first_name} {this.state.profileListData.last_name}</Text>
           </View>
-          <AddPost navigation={this.props.navigation}></AddPost>
+          <AddPost navigation={this.props.navigation} />
           <FlatList
             ListEmptyComponent={<Text>EMPTY!</Text>}
             data={this.state.posts}

@@ -26,6 +26,11 @@ class SettingsScreen extends Component {
         >
           <Text>Upload Profile Picture</Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate('Requests')}
+        >
+          <Text>View Requests</Text>
+        </TouchableOpacity>
       </View>
     )
   }

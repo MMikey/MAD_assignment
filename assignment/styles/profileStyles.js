@@ -18,9 +18,9 @@ const profileStyles = StyleSheet.create({
   profilePicture: {
     width: 100,
     height: 100,
-    borderRadius:10,
+    borderRadius: 10,
     alignSelf: 'center',
-    margin:10
+    margin: 10
   }
 })
 

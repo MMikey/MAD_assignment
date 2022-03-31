@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Image, Text, View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import { profileStyle, profileStyles  } from '../../styles/profileStyles'
+import { profileStyle, profileStyles } from '../../styles/profileStyles'
 class ProfilePicture extends Component {
   constructor (props) {
     super(props)
