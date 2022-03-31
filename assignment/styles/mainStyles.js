@@ -42,7 +42,7 @@ const mainStyles = StyleSheet.create({
   },
 
   profilePreviewText: {
-
+    fontFamily: FONTS.primary
   },
 
   button: {

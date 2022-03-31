@@ -3,12 +3,13 @@ import { Text, View, FlatList } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import AddFriend from '../shared/addFriend'
+import ProfilePicture from '../shared/profilePicture'
 
 import { mainStyles } from '../../styles/mainStyles'
 import { profileStyles } from '../../styles/profileStyles'
 
 class ProfileScreen extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -20,7 +21,7 @@ class ProfileScreen extends Component {
   }
 
   // called immediately after page is loaded.
-  componentDidMount() {
+  componentDidMount () {
     // when page comes into focus, check user is still logged in
     this.unsubscribe = this.props.navigation.addListener('focus', () => {
       this.checkLoggedIn()
@@ -29,7 +30,7 @@ class ProfileScreen extends Component {
     this.getProfileData()
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.unsubscribe()
   }
 
@@ -107,7 +108,7 @@ class ProfileScreen extends Component {
     }
   };
 
-  render() {
+  render () {
     if (this.state.isLoading) {
       return (
         <View>
@@ -118,6 +119,7 @@ class ProfileScreen extends Component {
       return (
         <View style={mainStyles.container}>
           <View style={profileStyles.profileDetailsContainer}>
+            <ProfilePicture userID={this.state.userID} />
             <Text style={profileStyles.profileName}>{this.state.profileListData.first_name} {this.state.profileListData.last_name}</Text>
           </View>
           <AddFriend userID={this.state.userID} navigation={this.props.navigation} />

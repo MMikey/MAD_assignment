@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Button, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { mainStyles } from '../../styles/mainStyles'
@@ -48,9 +48,10 @@ class AddFriend extends Component {
             <Text
               style={mainStyles.button}
               onPress={() => this.addUser()}
-            >Add as friend!</Text>
+            >Add as friend!
+            </Text>
           </TouchableOpacity>
-            <Text style={mainStyles.button}>{this.state.responseMessage}</Text>
+          <Text style={mainStyles.button}>{this.state.responseMessage}</Text>
         </View>
       )
     }

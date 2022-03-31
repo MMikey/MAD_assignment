@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
+import SettingsScreen from '../components/screens/settings'
 import LoginScreen from '../components/screens/login'
 import SignupScreen from '../components/screens/signup'
+import UploadProfilePicture from '../components/shared/uploadProfilePicture'
 
 const SettingsStack = createNativeStackNavigator()
 
@@ -14,8 +16,10 @@ class SettingsStackScreen extends Component {
           headerShown: false
         }}
       >
+        <SettingsStack.Screen name='Settings' component={SettingsScreen} />
         <SettingsStack.Screen name='Login' component={LoginScreen} />
         <SettingsStack.Screen name='Signup' component={SignupScreen} />
+        <SettingsStack.Screen name='UploadProfilePicture' component={UploadProfilePicture} />
       </SettingsStack.Navigator>
     )
   }

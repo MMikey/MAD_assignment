@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { FlatList, View, Text, TextInput, Button } from 'react-native'
+import { FlatList, View, TextInput, Button } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 
 import ProfilePreview from '../shared/profilePreview'
 
@@ -78,9 +77,10 @@ class SearchScreen extends Component {
         <FlatList
           data={this.state.results}
           renderItem={({ item }) => (
-            <ProfilePreview 
-            navigation={this.props.navigation}
-            profileData={item}/>
+            <ProfilePreview
+              navigation={this.props.navigation}
+              profileData={item}
+            />
           )}
           keyExtractor={(item, index) => item.user_id.toString()}
         />

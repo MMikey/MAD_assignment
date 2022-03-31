@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { COLORS } from './common'
+import { COLORS, FONTS } from './common'
 
 const profileStyles = StyleSheet.create({
 
@@ -11,7 +11,16 @@ const profileStyles = StyleSheet.create({
 
   profileName: {
     color: COLORS.primaryText,
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: FONTS.primary
+  },
+
+  profilePicture: {
+    width: 100,
+    height: 100,
+    borderRadius:10,
+    alignSelf: 'center',
+    margin:10
   }
 })
 
