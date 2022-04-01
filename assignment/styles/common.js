@@ -3,7 +3,9 @@ const COLORS = {
   secondaryText: '#3B317C',
   background: '#B3D7DF',
   button: '#83B8c7',
-  containerBackground: '#347690'
+  listItem: '#83B8c7',
+  containerBackground: '#347690',
+  secondaryContainerBackground: '#498399'
 }
 
 const FONTS = {

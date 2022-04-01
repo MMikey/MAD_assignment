@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import { Text, View, FlatList } from 'react-native'
+import { Text, View, FlatList, ScrollView } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import AddFriend from '../shared/addFriend'
 import ProfilePicture from '../shared/profilePicture'
 import AddPost from '../shared/addPost'
+import Posts from '../shared/posts'
 
 import { mainStyles } from '../../styles/mainStyles'
 import { profileStyles } from '../../styles/profileStyles'
+import { formStyles } from '../../styles/formStyles'
 
 class ProfileScreen extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -20,6 +22,22 @@ class ProfileScreen extends Component {
       posts: [],
       friendsData: []
     }
+  }
+
+  // called immediately after page is loaded.
+  componentDidMount() {
+    // when page comes into focus, check user is still logged in
+    this.unsubscribe = this.props.navigation.addListener('focus', () => {
+      this.checkLoggedIn()
+    })
+
+    this.getUserID()
+    this.getProfileData()
+    this.getFriends()
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe()
   }
 
   getUserID = async () => {
@@ -33,22 +51,7 @@ class ProfileScreen extends Component {
     this.setState({ userID: id })
   }
 
-  // called immediately after page is loaded.
-  componentDidMount () {
-    // when page comes into focus, check user is still logged in
-    this.unsubscribe = this.props.navigation.addListener('focus', () => {
-      this.checkLoggedIn()
-    })
 
-    this.getUserID()
-    this.getProfileData()
-    this.getPosts()
-    this.getFriends()
-  }
-
-  componentWillUnmount () {
-    this.unsubscribe()
-  }
 
   getProfileData = async () => {
     // Get session token from< asyncstorage - similar how you get session values in php
@@ -73,33 +76,6 @@ class ProfileScreen extends Component {
         this.setState({
           isLoading: false,
           profileListData: responseJson
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }
-
-  getPosts = async () => {
-    const value = await AsyncStorage.getItem('@session_token')
-
-    return window.fetch('http://localhost:3333/api/1.0.0/user/' + this.state.userID + '/post', {
-      headers: {
-        'X-Authorization': value
-      }
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          return response.json()
-        } else if (response.status === 403) {
-          throw new Error('Add as friend to view posts!')
-        } else {
-          throw new Error('Oops! Something went wrong!')
-        }
-      })
-      .then((responseJson) => {
-        this.setState({
-          posts: responseJson
         })
       })
       .catch((error) => {
@@ -142,7 +118,7 @@ class ProfileScreen extends Component {
     }
   }
 
-  render () {
+  render() {
     if (this.state.isLoading) {
       return (
         <View>
@@ -151,36 +127,29 @@ class ProfileScreen extends Component {
       )
     } else {
       return (
-        <View style={mainStyles.container}>
+        <ScrollView style={mainStyles.container}>
           <View style={profileStyles.profileDetailsContainer}>
             <ProfilePicture userID={this.state.userID} />
             <Text style={profileStyles.profileName}>{this.state.profileListData.first_name} {this.state.profileListData.last_name}</Text>
+            <AddFriend userID={this.state.userID} navigation={this.props.navigation} />
           </View>
-          <AddPost navigation={this.props.navigation} />
-          <FlatList
-            ListEmptyComponent={<Text>EMPTY!</Text>}
-            data={this.state.posts}
-            renderItem={({ item }) => (
-              <View>
-                <Text>{item.text}</Text>
-              </View>
-            )}
-            keyExtractor={(item, index) => item.post_id.toString()}
-          />
 
-          <AddFriend userID={this.state.userID} navigation={this.props.navigation} />
+          <Posts userID={this.state.userID} navigation={this.props.navigation}></Posts>
 
-          <FlatList
-            ListEmptyComponent={<Text>EMPTY!</Text>}
-            data={this.state.results}
-            renderItem={({ item }) => (
-              <View>
-                <Text>{item.first_name} {item.second_name}</Text>
-              </View>
-            )}
-            keyExtractor={(item, index) => item.user_id.toString()}
-          />
-        </View>
+          <View style={mainStyles.subContainer}>
+            <Text>Friends</Text>
+            <FlatList
+              ListEmptyComponent={<Text>EMPTY!</Text>}
+              data={this.state.results}
+              renderItem={({ item }) => (
+                <View style={formStyles.formItem}>
+                  <Text>{item.first_name} {item.second_name}</Text>
+                </View>
+              )}
+              keyExtractor={(item, index) => item.user_id.toString()}
+            />
+          </View>
+        </ScrollView>
       )
     }
   }

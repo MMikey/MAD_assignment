@@ -6,7 +6,7 @@ const profileStyles = StyleSheet.create({
   profileDetailsContainer: {
     textAlign: 'center',
     padding: 20,
-    backgroundColor: COLORS.containerBackground
+    backgroundColor: COLORS.containerBackground,
   },
 
   profileName: {

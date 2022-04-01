@@ -1,21 +1,22 @@
 import { StyleSheet } from 'react-native'
+import { COLORS, FONTS } from './common'
 
 const formStyles = StyleSheet.create({
   formItem: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignContent: 'space-between'
+    backgroundColor: COLORS.containerBackground,
+    padding: 5,
+    margin: 5,
+    textAlign: 'center',
+    maxWidth: '50%',
+    alignSelf: 'center',
+    borderRadius: 4,
   },
 
   formLabel: {
-    alignItems: 'center',
-    alignContent: 'space-between'
   },
 
   formInput: {
-    alignItems: 'center',
-    alignContent: 'space-between'
+    backgroundColor: COLORS.secondaryContainerBackground,
   }
 })
 

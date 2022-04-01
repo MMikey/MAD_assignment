@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Button } from 'react-native'
+import { Text,TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { mainStyles } from '../../styles/mainStyles'
 
 class Logout extends Component {
   constructor (props) {
@@ -33,6 +34,7 @@ class Logout extends Component {
   logoutUser = async () => {
     const token = await AsyncStorage.getItem('@session_token')
     await AsyncStorage.removeItem('@session_token')
+    await AsyncStorage.removeItem('@session_id')
     return window.fetch('http://localhost:3333/api/1.0.0/logout', {
       method: 'post',
       headers: {
@@ -55,12 +57,10 @@ class Logout extends Component {
 
   render () {
     return (
-      <View>
-        <Button
-          title='Logout'
-          onPress={() => this.logoutUser()}
-        />
-      </View>
+      <TouchableOpacity style={mainStyles.buttonContainer}
+      onPress={() => this.logoutUser()}>
+        <Text style={mainStyles.button}>Logout</Text>
+      </TouchableOpacity>
     )
   }
 }

@@ -24,7 +24,7 @@ class AddFriend extends Component {
         }
       })
         .then((response) => {
-          if (response.status === 201) {
+          if (response.status === 200) {
             return response.json()
           } else if (response.status === 403) {
             throw new Error('User is already added as a friend!')
@@ -43,7 +43,6 @@ class AddFriend extends Component {
 
     render () {
       return (
-        <View style={mainStyles.container}>
           <TouchableOpacity style={mainStyles.buttonContainer}>
             <Text
               style={mainStyles.button}
@@ -51,8 +50,6 @@ class AddFriend extends Component {
             >Add as friend!
             </Text>
           </TouchableOpacity>
-          <Text style={mainStyles.button}>{this.state.responseMessage}</Text>
-        </View>
       )
     }
 }

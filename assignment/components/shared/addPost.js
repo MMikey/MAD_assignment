@@ -3,7 +3,8 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { mainStyles } from '../../styles/mainStyles'
-
+import { formStyles } from '../../styles/formStyles'
+ 
 class AddPost extends Component {
   constructor (props) {
     super(props)
@@ -44,8 +45,9 @@ class AddPost extends Component {
 
     render () {
       return (
-        <View style={mainStyles.container}>
+        <View style={mainStyles.subContainer}>
           <TextInput
+            style={formStyles.formInput}
             placeholder='enter text...'
             onChangeText={(text) => this.setState({ text })}
             value={this.state.text}

@@ -1,17 +1,30 @@
 import React, { Component } from 'react'
-import { Text, View, Button, TextInput } from 'react-native'
+import { Text, View, Button, TextInput, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { mainStyles } from '../../styles/mainStyles'
 import { formStyles } from '../../styles/formStyles'
 
 class LoginScreen extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
       email: '',
       password: ''
+    }
+  }
+
+  componentDidMount () {
+    this.subscribe = this.props.navigation.addListener('focus', () => {
+      this.checkLoggedIn()
+    })
+  }
+
+  checkLoggedIn = async () => {
+    const value = await AsyncStorage.getItem('@session_token')
+    if (value != null) {
+      this.props.navigation.navigate('SettingsMenu')
     }
   }
 
@@ -45,10 +58,9 @@ class LoginScreen extends Component {
       })
   }
 
-  render () {
+  render() {
     return (
       <View style={mainStyles.container}>
-        <Text style={mainStyles.heading}> Login </Text>
 
         <View style={formStyles.formItem}>
           <Text style={formStyles.formLabel}>Email:</Text>
@@ -71,12 +83,19 @@ class LoginScreen extends Component {
           />
         </View>
 
-        <Button
-          title='Login'
+        <TouchableOpacity
+        style={mainStyles.buttonContainer}
           onPress={() => this.login()}
-        />
+        >
+          <Text>Login</Text>
+        </TouchableOpacity>
 
+        <TouchableOpacity
+        style={mainStyles.buttonContainer}
+        onPress={() => this.props.navigation.navigate('Signup')}
+        />
       </View>
+      
     )
   }
 }

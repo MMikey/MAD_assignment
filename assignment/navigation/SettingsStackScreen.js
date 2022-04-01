@@ -17,7 +17,7 @@ class SettingsStackScreen extends Component {
           headerShown: false
         }}
       >
-        <SettingsStack.Screen name='Settings' component={SettingsScreen} />
+        <SettingsStack.Screen name='SettingsMenu' component={SettingsScreen} />
         <SettingsStack.Screen name='Login' component={LoginScreen} />
         <SettingsStack.Screen name='Signup' component={SignupScreen} />
         <SettingsStack.Screen name='UploadProfilePicture' component={UploadProfilePicture} />

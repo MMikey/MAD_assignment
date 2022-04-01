@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { FlatList, View, TextInput, Button } from 'react-native'
+import { FlatList, View, TextInput, Text, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import ProfilePreview from '../shared/profilePreview'
 
+import { formStyles } from '../../styles/formStyles'
+import { mainStyles } from '../../styles/mainStyles'
+
 class SearchScreen extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
@@ -15,13 +18,13 @@ class SearchScreen extends Component {
     }
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.unsubscribe = this.props.navigation.addListener('focus', () => {
       this.checkLoggedIn()
     })
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.unsubscribe()
   }
 
@@ -37,7 +40,7 @@ class SearchScreen extends Component {
         if (response.status === 200) {
           return response.json()
         } else if (response.status === 401) {
-          this.props.navigation.navigate('Login')
+          this.props.navigation.navigate('SettingsMenu')
         } else {
           throw new Error('Oops! Something went wrong')
         }
@@ -56,23 +59,26 @@ class SearchScreen extends Component {
     const value = await AsyncStorage.getItem('@session_token')
 
     if (value == null) {
-      this.props.navigation.navigate('Login')
+      this.props.navigation.navigate('Settings', { screen: 'Login' })
     }
   }
 
-  render () {
+  render() {
     return (
-      <View>
+      <View style={mainStyles.container}>
         <TextInput
           placeholder='SearchBar'
           onChangeText={(searchQuery) => this.setState({ searchQuery })}
           on
           value={this.state.searchQuery}
+          style={formStyles.formItem}
         />
-        <Button
-          title='Search'
+        <TouchableOpacity
           onPress={() => this.search()}
-        />
+          style={mainStyles.buttonContainer}
+        >
+          <Text style={mainStyles.button}>Search</Text>
+        </TouchableOpacity>
 
         <FlatList
           data={this.state.results}

@@ -37,8 +37,7 @@ class SignupScreen extends Component {
         })
         .then(async (responseJson) => {
           console.log(responseJson)
-          await AsyncStorage.setItem('@session_token', responseJson.token)
-          this.props.navigation.navigate('Home')
+          this.props.navigation.navigate('Settings', {Screen:'Login'})
         })
         .catch((error) => {
           console.log(error)
