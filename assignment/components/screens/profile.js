@@ -12,7 +12,7 @@ import { profileStyles } from '../../styles/profileStyles'
 import { formStyles } from '../../styles/formStyles'
 
 class ProfileScreen extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -25,7 +25,7 @@ class ProfileScreen extends Component {
   }
 
   // called immediately after page is loaded.
-  componentDidMount() {
+  componentDidMount () {
     // when page comes into focus, check user is still logged in
     this.unsubscribe = this.props.navigation.addListener('focus', () => {
       this.checkLoggedIn()
@@ -36,7 +36,7 @@ class ProfileScreen extends Component {
     this.getFriends()
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.unsubscribe()
   }
 
@@ -50,8 +50,6 @@ class ProfileScreen extends Component {
     const id = tempID
     this.setState({ userID: id })
   }
-
-
 
   getProfileData = async () => {
     // Get session token from< asyncstorage - similar how you get session values in php
@@ -118,7 +116,7 @@ class ProfileScreen extends Component {
     }
   }
 
-  render() {
+  render () {
     if (this.state.isLoading) {
       return (
         <View>
@@ -134,10 +132,10 @@ class ProfileScreen extends Component {
             <AddFriend userID={this.state.userID} navigation={this.props.navigation} />
           </View>
 
-          <Posts userID={this.state.userID} navigation={this.props.navigation}></Posts>
+          <Posts userID={this.state.userID} navigation={this.props.navigation} />
 
           <View style={mainStyles.subContainer}>
-            <Text>Friends</Text>
+            <Text style={mainStyles.subheading}>Friends</Text>
             <FlatList
               ListEmptyComponent={<Text>EMPTY!</Text>}
               data={this.state.results}

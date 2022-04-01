@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import Logout from '../shared/logout'
 
@@ -14,12 +15,7 @@ class SettingsScreen extends Component {
   render () {
     return (
       <View style={mainStyles.container}>
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('Login')}
-          style={formStyles.formItem}
-        >
-          <Text>Login</Text>
-        </TouchableOpacity>
+        {this.displayLoginButton}
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate('Signup')}
         >
@@ -38,9 +34,25 @@ class SettingsScreen extends Component {
           <Text>View Requests</Text>
         </TouchableOpacity>
 
-        <Logout navigation={this.props.navigation}></Logout>
+        <Logout navigation={this.props.navigation} />
 
       </View>
+    )
+  }
+
+  displayLoginButton = async () => {
+    const value = await AsyncStorage.getItem('@session_token')
+
+    if (value == null) {
+      return
+    }
+    return (
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('Login')}
+        style={formStyles.formItem}
+      >
+        <Text>Login</Text>
+      </TouchableOpacity>
     )
   }
 }

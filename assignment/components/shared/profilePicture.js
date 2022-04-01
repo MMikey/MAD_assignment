@@ -14,6 +14,11 @@ class ProfilePicture extends Component {
     }
   }
 
+  componentDidMount () {
+    this.setState({ userID: this.props.userID })
+    this.getProfileImage()
+  }
+
     getProfileImage = async () => {
       const value = await AsyncStorage.getItem('@session_token')
 
@@ -39,11 +44,6 @@ class ProfilePicture extends Component {
         .catch((error) => {
           console.log(error)
         })
-    }
-
-    componentDidMount () {
-      this.setState({ userID: this.props.userID })
-      this.getProfileImage()
     }
 
     render () {

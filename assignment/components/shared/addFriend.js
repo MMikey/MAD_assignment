@@ -43,13 +43,13 @@ class AddFriend extends Component {
 
     render () {
       return (
-          <TouchableOpacity style={mainStyles.buttonContainer}>
-            <Text
-              style={mainStyles.button}
-              onPress={() => this.addUser()}
-            >Add as friend!
-            </Text>
-          </TouchableOpacity>
+        <TouchableOpacity style={mainStyles.buttonContainer}>
+          <Text
+            style={mainStyles.button}
+            onPress={() => this.addUser()}
+          >Add as friend!
+          </Text>
+        </TouchableOpacity>
       )
     }
 }

@@ -14,12 +14,14 @@ const mainStyles = StyleSheet.create({
     padding: 5,
     width: '60%',
     backgroundColor: COLORS.containerBackground,
-    alignSelf:'center',
+    alignSelf: 'center',
     borderRadius: 4
   },
 
   titleContainer: {
     alignSelf: 'center',
+    justifyContent: 'center',
+    flex: 1,
     borderRadius: 4,
     padding: 15
   },
@@ -32,9 +34,17 @@ const mainStyles = StyleSheet.create({
     fontFamily: FONTS.primary
   },
 
+  subheading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: COLORS.primary,
+    textAlign: 'center',
+    fontFamily: FONTS.primary
+  },
+
   subText: {
-    color:COLORS.primary,
-    fontSize:15
+    color: COLORS.primary,
+    fontSize: 15
   },
 
   buttonContainer: {
@@ -42,7 +52,7 @@ const mainStyles = StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: COLORS.button,
     borderRadius: 4,
-    margin:5,
+    margin: 5,
     padding: 8
   },
 
@@ -50,7 +60,7 @@ const mainStyles = StyleSheet.create({
     backgroundColor: COLORS.containerBackground,
     justifyContent: 'space-between',
     alignSelf: 'center',
-    margin: 5,
+    margin: 2,
     borderRadius: 4,
     padding: 8
   },
@@ -68,24 +78,22 @@ const mainStyles = StyleSheet.create({
     backgroundColor: COLORS.listItem,
     padding: 5,
     margin: 5,
-    minWidth: '80%',
+    width: '40%',
     textAlign: 'center',
     alignSelf: 'center',
-    borderRadius: 2,
+    borderRadius: 2
   },
-  
+
   postMenuContainer: {
-    flex:1,
-    flexDirection:'row',
-    justifyContent:'space-between',
-    backgroundColor:COLORS.button,
-    color:COLORS.secondaryText
+    backgroundColor: COLORS.secondaryContainerBackground,
+    color: COLORS.secondaryText
   },
 
   postMenuItems: {
-    flex:1,
     padding: 2,
-    margin:1,
+    margin: 1,
+    alignItems: 'center',
+    width: '50%'
   }
 })
 

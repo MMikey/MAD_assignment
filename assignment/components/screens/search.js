@@ -8,7 +8,7 @@ import { formStyles } from '../../styles/formStyles'
 import { mainStyles } from '../../styles/mainStyles'
 
 class SearchScreen extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -18,13 +18,13 @@ class SearchScreen extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.unsubscribe = this.props.navigation.addListener('focus', () => {
       this.checkLoggedIn()
     })
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     this.unsubscribe()
   }
 
@@ -63,13 +63,13 @@ class SearchScreen extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <View style={mainStyles.container}>
         <TextInput
-          placeholder='SearchBar'
+          placeholder='Search for friends!'
           onChangeText={(searchQuery) => this.setState({ searchQuery })}
-          on
+          ListEmptyComponent={<Text style={mainStyles.listItem} />}
           value={this.state.searchQuery}
           style={formStyles.formItem}
         />
@@ -81,6 +81,7 @@ class SearchScreen extends Component {
         </TouchableOpacity>
 
         <FlatList
+          on
           data={this.state.results}
           renderItem={({ item }) => (
             <ProfilePreview

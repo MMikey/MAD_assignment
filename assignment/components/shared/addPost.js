@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { mainStyles } from '../../styles/mainStyles'
 import { formStyles } from '../../styles/formStyles'
- 
+
 class AddPost extends Component {
   constructor (props) {
     super(props)

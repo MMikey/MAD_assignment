@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text,TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { mainStyles } from '../../styles/mainStyles'
 
@@ -57,8 +57,10 @@ class Logout extends Component {
 
   render () {
     return (
-      <TouchableOpacity style={mainStyles.buttonContainer}
-      onPress={() => this.logoutUser()}>
+      <TouchableOpacity
+        style={mainStyles.buttonContainer}
+        onPress={() => this.logoutUser()}
+      >
         <Text style={mainStyles.button}>Logout</Text>
       </TouchableOpacity>
     )

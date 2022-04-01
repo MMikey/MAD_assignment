@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, Button, TextInput, TouchableOpacity } from 'react-native'
+import { Text, View, TextInput, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { mainStyles } from '../../styles/mainStyles'
@@ -23,7 +23,7 @@ class LoginScreen extends Component {
 
   checkLoggedIn = async () => {
     const value = await AsyncStorage.getItem('@session_token')
-    if (value != null) {
+    if (value != null) {Signup
       this.props.navigation.navigate('SettingsMenu')
     }
   }
@@ -93,7 +93,7 @@ class LoginScreen extends Component {
         <TouchableOpacity
         style={mainStyles.buttonContainer}
         onPress={() => this.props.navigation.navigate('Signup')}
-        />
+        ><Text>Signup</Text></TouchableOpacity>
       </View>
       
     )

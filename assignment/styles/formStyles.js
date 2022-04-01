@@ -9,14 +9,14 @@ const formStyles = StyleSheet.create({
     textAlign: 'center',
     maxWidth: '50%',
     alignSelf: 'center',
-    borderRadius: 4,
+    borderRadius: 4
   },
 
   formLabel: {
   },
 
   formInput: {
-    backgroundColor: COLORS.secondaryContainerBackground,
+    backgroundColor: COLORS.secondaryContainerBackground
   }
 })
 

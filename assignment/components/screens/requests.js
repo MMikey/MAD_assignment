@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, TouchableOpacity, View, FlatList} from 'react-native'
+import { Text, TouchableOpacity, View, FlatList } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { mainStyles } from '../../styles/mainStyles'
@@ -54,7 +54,7 @@ class RequestsScreen extends Component {
         }
       })
         .then((response) => {
-          if (response.status === 201) {
+          if (response.status === 200) {
             return response.json()
           } else if (response.status === 401) {
             this.props.navigation.navigate('Settings', { screen: 'Login' })
@@ -100,7 +100,7 @@ class RequestsScreen extends Component {
       return (
         <View style={mainStyles.container}>
           <FlatList
-            ListEmptyComponent={<Text>EMPTY!</Text>}
+            ListEmptyComponent={<View style={mainStyles.subContainer}><Text>Go and find some friends!</Text></View>}
             data={this.state.friendRequestData}
             renderItem={({ item }) => (
               <View>

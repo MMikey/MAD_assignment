@@ -37,7 +37,7 @@ class SignupScreen extends Component {
         })
         .then(async (responseJson) => {
           console.log(responseJson)
-          this.props.navigation.navigate('Settings', {Screen:'Login'})
+          this.props.navigation.navigate('Settings', { Screen: 'Login' })
         })
         .catch((error) => {
           console.log(error)
